@@ -1,0 +1,15 @@
+Modules:-
+========
+1)User
+2)Booking and Routes
+3)CustomerSupport
+4)Sms and Email  5)Reports
+6)Insurance   7)Ratings
+8)Coupons and Dispcounts
+Roles/users :-
+=============
+1)SUPER ADMIN
+2)TRAVEL_ADMIN
+3)AGENT
+4)PASSENGER
+5)CUSTOMER_SUPPORT

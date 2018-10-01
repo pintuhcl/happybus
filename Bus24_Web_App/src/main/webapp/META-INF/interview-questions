@@ -1,0 +1,243 @@
+1) Explian Your Project Arch?
+
+2)Explain about Layers used in your project?
+
+3)In which layer you are involed?
+
+4)What are technologies are used in your Project?
+
+5)Is your attending any meetings?
+If your attending then how much time ?
+
+6)Your Client name?
+
+7)What is your HR name and TL names etc...?
+
+8)How security is implemented in your project?
+
+9)What are the exceptions handled and avoided?
+
+10) How many modules are there in your project?
+
+
+11)How many roles (like admin,customer etc..) are there?
+
+12)How many tables are there?
+
+13)What need of webservice for your project?
+
+
+14) Which implementation used from webservices?
+
+15)Total Duration of Your Project?
+
+16)What is scrum and scrum master?
+
+17)How the tasks are assigning ?
+
+18)What is sprint and story -points ?
+
+
+19)what is difference between
+agile and waterfall model?
+
+
+20) Sample Unit Test cases of Your Project?
+
+
+21)From Which Repository your getting Project?
+(like SVN/CVS/GIT etc..)
+
+22)Some of Design Patterns 
+(DAO,Factory,AbstractFactory,
+Front-Controller,BussinessDelegate,VO,BO,Proxy,
+Facade,Command Object,ViewHelper,Singleton,
+ServiceLocator,Strategy,MVC )
+
+23)Questions On Tools (Maven,Junit,Log4j,SVN )
+
+****24) How to resolve the Confilicts in SVN ?
+To resolve the conflicts right click on conflicted file-->select team option and choose synchronize with repository
+then take back up your data after that copy  code from remote file and paste into your local system
+finally right click on conflicted file and click on mark as merge so that problem will solved.
+
+25)svn term : Checkout,commit,update ?
+checkout:chechout means creating a working copy in local system from remote system(remote copy)
+commit:saving modified or newly added code into remote copy
+update:Taking updations into already existing project in your local system from the remote copy
+
+
+26) what is  trunk,branch,tags?
+
+27) What are the issues your solved in your project?
+  
+28) Tell me some problems you faced while developing the
+code?
+
+29)Where method overloading 
+and method overriding implemented in your project?
+-->In dao layer and service layer first i created interface and declared some methods 
+i was overriden  those methods in implemented class
+-->in dao layer i was overloaded update method several times to execute sql commands on database
+30)Is your created any thread in your project?
+if created then what is need to create that Thread?
+
+31) any where synchronoziation is
+implemented in your  project?
+
+32)All the collection questions ?
+
+33) String,StringBuffer and string Builder questions?
+
+34) JSTL tags?
+
+35)What is Dependency Injection
+and why dependency inj?
+
+36) How many containers are there in spring?
+spring having two containers
+1)BeanFactory-->small container which is having less features like creating beans and injecting the dependency's
+2)ApplicationContext container-->advanced container which is having more features like supporting  annotations and scheduling concepts,transactions
+
+37) what is IOC?
+   --> Stands for inversion of control which is developed based on IOC design pattern 
+   -->IOC is acting as a mediater between dependent class and dependency class for injecting dependency's to dependent class
+   -->It provides loose coupling between two classes
+   -->Ioc are two types
+       i)dependency injection
+       ii)lookup  injection
+ 
+ 
+38) Spring Mvc flow and All
+the components of Spring MVC?
+Explain flow of Mvc
+Components:Dispatcher Servlet,HandlerMapping ,Controller,View Resolvers ..etc
+39)Why we are using 
+spring-boot and spring-batch?
+spring-boot:i)spring boot is given by spring community as a separate project main aim this project is to remove complete configuration from the application
+            ii)spring boot configures required classes automatically based on classpath
+            iii)In spring boot not required to add more annotations
+            iv)spring boot reduces the adding of maven dependency's
+40) how to implement a corn job?
+
+41)what is difference between
+SOAP and Restfull webservices?
+
+42)Commons questions on Servlet,JSP and JDBC?
+
+
+43) What is difference between get and load() ?
+
+44) Questions HQL,criteria,Native-SQL?
+
+45)Caching tech'q question from Hibernate?
+
+46)Locking mechanism in Hibernate and DB?
+
+47)SessionFactory and Session in hibernate?
+
+48) HibernatTemplate is better (OR) Plain Hibernate API
+is better?
+
+49) How to increase JVM heap Size and How to solve
+HeapOut of Memory Error?
+
+50) Connection Pooling realeated questions?
+
+51)Transatcion Management related questions?
+
+52) what is root resource and resource method?
+
+53)where we can use GET Where we can use POST?
+
+54)what is difference b.w QueryParameters
+,Pata Parameters and matrix Parameters?
+
+55)What is difference b.w JSON and XML?
+
+56)write WSDL document?
+
+57)SOA (Service Oriented Arch) Arch?
+
+58)What is the difference Top-Down Approach
+and Bottom-Up Approach?
+
+59) How to create SEI in JAX-Rs And in JAX-Ws 
+Api App's?
+
+60) what is UDDI?
+
+61)What is Endpoint?
+   Endpoint is server side component  who receives request from client
+62) What is Proxy(stub and skeleton)?
+   proxy is not a real acting like real
+63)what is MEP and MEF?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

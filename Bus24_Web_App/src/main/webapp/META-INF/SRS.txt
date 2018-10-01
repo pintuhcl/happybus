@@ -1,0 +1,20 @@
+Spring4.x
+SpringBoot 1.4.x
+SpringBatch
+JAX-RS API 2.0
+Oracle 10g
+SpringToolSuiteIDE(STS)-->3.8
+TomcatServer8.x
+Maven3.x
+SVN 1.9.x
+Log4j1.x
+Junit 4.x
+JasperReports
+HTML5 ,Css3,BootStrap 4.x
+Javascript
+Angular-js 1.6
+Jackson-API 2.x 
+JAXB-API 2.x
+JDK8
+
+

@@ -1,0 +1,7 @@
+Tier:-
+====
+1)ResourceTier
+2)IntegrationTier
+3)BussinessTier
+4)PresentationTier
+5)ClientTier

@@ -1,0 +1,76 @@
+  Add Travels
+
+  Search Travels and Edit Travel-->Abdul & Eshore (4 days)
+
+  Add Agents--> Pramod (4 days)
+  Search Agents and Edit Agents-->damodar &shekar (4 days)
+  
+ Add Bus,busType,amenities-->Sahoo -->2days
+
+ Search Busses  and Edit bus Details By admins-->ranjan & prasanna(4days)
+  
+ Search Amenities and Edit Amenities-->Mulayam(4days)
+
+ Forget Password--->Pradeep  (4 days)
+
+ Change Password-->manohar (4 days)
+
+ MyProfile--->abinav (4 days)
+
+Search Busses for Passengers -->vijay  && sachin(4 days)
+Seat Layout and Booking------->Vicky (7 days)
+ MyTrips ---->vedbhooshan (4 days)
+Cancel Ticket-->Shashidar
+PrintTicket and Sms,email Ticket--->srinivas (4 days)
+
+ Resend OTP && check OTP--->Srikanth (4 days)
+ 
+Add Routes  --->Shaoo (4 days)
+
+Search Routes and Edit Routes-->Shankar & vinay
+
+Add coupons && Add discounts-->riyaz (2 days)
+
+
+
+search  and Edit Coupons--->kishore & Lokesh-->4 days
+
+Search Discounts and Edit Discounts-->Sudhir & manoj
+
+Feedback and ratings-->Amit && Praveen & Ganesh (4 days)
+
+CustomerSupport Module-->Vinod and Srikanth &Jagannath (5 days)
+
+Report Generations --> suchitra & jyothi
+
+Scheduling Jobs--->Balram &&Asif (4 days)
+
+Search Bookings by SuperAdmin->G.Sindhu
+
+
+Search Bookings by TravelAdmin->Pavani
+
+Insurance-->Rakhi & Sindhu
+
+Bussiness Transactions--->Kamal
+
+Show Popular Bus routes  and Popular Travles--->Shashmalatha
+
+
+Client-Side Validations and server side validtions-->Vicks
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 

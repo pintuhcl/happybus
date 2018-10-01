@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app" ng-controller="search_route_controller">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<body>
+<table align="center">
+<form method="post" action="addRoute">
+Source*:<input type="text" name="source" required><br>
+Destination*:<input type="text" name="destination" required><br>
+Number of Seats*:<input type="text" name="seats" required><br>
+Departure Time:<input type="text" name="departureTime"/>
+Arrival Time:<input type="text" name="arrivalTime"/><br><br>
+
+
+<input type="submit" value="Add Route">|
+<input type="submit" value="Delete Route">|
+<input type="submit" value="Edit Route">|
+<input type="submit" value="Back">|
+<input type="submit" value="Exit">
+</form>
+</table>
+<form  class="form-horizontal" ng-hide="flag"> 
+ <h2>Search Route Page</h2>
+  <div class="form-group">
+    <label for="exampleInputRouteName" class="col-sm-2 control-label">Search Route By City:</label>
+    <div class="col-sm-5">
+      <input type="text" ng-model="RouteSource" class="form-control" id="exampleInputRouteName" placeholder="RouteName" ng-focus="clearMessage()">
+    </div>
+  </div>
+ <div class="row">
+  <div class="col-sm-offset-4 com-sm-10">
+    <button type="button" class="btn btn-success btn-lg" ng-click="searchRoute(RouteSource)" type="submit" >Search</button>
+  </div>
+  </div>
+ </form>
+ <br>
+  <div   ng-hide="flag1" >
+ <table class="table table-bordered" ng-show="route.length>0">
+    <thead>
+         <th class="active">BusId</th>
+         <th class="success">RouteId</th>
+         <th class="warning">Source</th>
+         <th class="danger">Destination</th>
+         <th class="info">Distance</th>
+         <th class="success">DepartureTime</th>
+         <th class="danger">ArrivalTime</th>
+         <th class="info">BoardingPoint</th>
+         <th class="success">DroppingPoint</th> 
+         <th class="warning">Status</th>
+         <th class="danger">ServiceNo</th>
+         <th class="info">Price</th>
+     </thead>
+     <tbody>
+      <tr ng-repeat="routes in route" >
+        <td class="active">{{routes.busId}}</td>
+        <td class="success">{{routes.routeId}}</td>
+        <td class="warning">{{routes.source}}</td>
+        <td class="danger">{{routes.destination}}</td>
+        <td class="info">{{routes.distance}}</td>
+        <td class="success">{{routes.departureTime}}</td>
+        <td class="danger">{{routes.arrivalTime}}</td>
+        <td class="info">{{routes.boardingPoints}}</td>
+        <td class="success">{{routes.droppingPoints}}</td>
+        <td  class="warning">{{routes.status}}</td>
+        <td class="danger">{{routes.serviceNo}}</td>
+        <td class="info">{{routes.price}}</td>
+        <td class="warning"><button ng-click="editRoute(routes)" class="btn btn-success btn-md">Edit</button></td>
+  
+     </tr>
+     </tbody>
+</table>
+</div>
+ 
+<!-- edit form details --> 
+ <div class="col-sm-offset-3 com-sm-10" ng-hide="flag3">
+<form ng-show="flag1" >
+<header class="page-header">
+		<h2>Update Route Page</h2>
+	</header>
+	  <div class="row">
+          <div class="col-lg-4 col-md-4">
+               <div class="form-group">
+                  <label>BusId</label>
+                  <input type="text" ng-model=selected.busId  maxlength="100" id="routeId" class="form-control" ng-disabled="true"></input>
+               </div>
+         </div>
+          <div class="col-lg-4 col-md-4">
+               <div class="form-group">
+                  <label>RouteId</label>
+                  <input type="text"   ng-model=selected.routeId  maxlength="100" id="routeId" class="form-control" >
+               </div>
+         </div>
+    </div><!-- one Row -->
+	<div class="row">
+          <div class="col-lg-4 col-md-4">
+               <div class="form-group">
+                  <label>Source</label>
+                  <input type="text" ng-model=selected.source maxlength="100" id="source" class="form-control">
+               </div>
+         </div>
+          <div class="col-lg-4 col-md-4">
+               <div class="form-group">
+                  <label>Destination</label>
+                  <input type="text" ng-model=selected.destination maxlength="15" id="ph1" class="form-control" >
+               </div>
+         </div>
+    </div><!--2nd Row -->
+	<div class="row">
+          <div class="col-lg-4 col-md-4">
+               <div class="form-group">
+                  <label>Distance</label>
+                  <input type="number" ng-model=selected.distance maxlength="100" id="ph2" class="form-control">
+               </div>
+         </div>
+          <div class="col-lg-4 col-md-4">
+               <div class="form-group">
+                  <label>DepartureTime</label>
+                  <input type="text" ng-model=selected.departureTime maxlength="100" id="departureTime" class="form-control" >
+               </div>
+         </div>
+    </div><!--3rd Row -->
+   <div class="row">
+          <div class="col-lg-4 col-md-4">
+               <div class="form-group">
+                  <label>ArrivalTime</label>
+                  <input type="text"ng-model=selected.arrivalTime maxlength="100" id="arrivalTime" class="form-control" >
+               </div>
+         </div>
+         <div class="col-lg-4 col-md-4">
+               <div class="form-group">
+                  <label>BoardingPoints</label>
+                  <input type="text" ng-model=selected.boardingPoints maxlength="100" id="boardingPoints" class="form-control">
+               </div>
+         </div>
+    </div><!--4th Row -->
+    <div class="row">
+          <div class="col-lg-4 col-md-4">
+               <div class="form-group">
+                   <label>DroppingPoints</label>
+                   <input type="text" ng-model=selected.droppingPoints maxlength="100" id="droppingPoints" class="form-control" >
+              </div>
+         </div>
+         <div class="col-lg-4 col-md-4">
+               <div class="form-group">
+                  <label>Status</label>
+                  <input type="text" ng-model=selected.status maxlength="100" id="status" class="form-control">
+               </div>
+         </div>
+    </div><!--5th Row -->
+    <div class="row">   
+          <div class="col-lg-4 col-md-4">
+               <div class="form-group">
+                  <label>ServiceNo</label>
+                  <input type="text" ng-model=selected.serviceNo maxlength="100" id="serviceNo" class="form-control" >
+               </div>
+         </div>
+          <div class="col-lg-4 col-md-4">
+               <div class="form-group">
+                  <label>Price</label>
+                  <input type="text" ng-model=selected.price maxlength="100" id="price" class="form-control">
+               </div>
+    </div>
+    </div><!--6th Row -->
+    	<div class="col-sm-offset-3 com-sm-10">
+        <button type="button"  class="btn btn-primary ,btn btn-lg" ng-click="updateRoute()">Update</button>
+   </div>
+</form>
+</div>
+ <script>
+        var app=angular.module("app",[]);
+        app.controller("search_route_controller",search_route_controller);
+    	$scope.selected = {};
+        function search_route_controller($scope,$window,$http) {    	
+        	$scope.updateRoute=function(){
+        		$scope.flag2=true;
+        		$http({
+        			method : "post",
+       				url : "/Bus24/updateRoute",
+       				params : {
+       					"busId":$scope.selected.busId,
+       					"routeId": $scope.selected.routeId,
+       					"source":$scope.selected.source,
+       					"destination":$scope.selected.destination,
+       					"distance":$scope.selected.distance,
+       					"departureTime":$scope.selected.departureTime,
+       					"arrivalTime":$scope.selected.arrivalTime,
+       					"boardingPoints":$scope.selected.boardingPoints,
+       					"droppingPoints":$scope.selected.droppingPoints,
+       					"status":$scope.selected.status,
+       					"serviceNo":$scope.selected.serviceNo,
+       					"price":$scope.selected.price
+       				}
+        		}).then(function(result){
+                   $scope.response=result.data;
+        			if( $scope.response.status=="SUCCESS"){
+        				$scope.flag3=true;
+        				$scope.message="Record Updated Successfully";
+        			}
+        			else {
+        			       $scope.message = $scope.response.message;
+        			       
+        			      }
+        		},function(result){
+        			$window.alert("fail");
+        		});
+        	}
+           $scope.searchRoute=function(source){
+           $window.alert("hello"+source);
+           
+           $scope.RouteSource
+        	   $scope.flag=false; 
+        	   $http({
+   				method : "post",
+   				url : "/Bus24/searchRoute",
+   				params : {
+   					
+   					"source" : source
+   			    }
+   			}).then(function(result) {
+   					$scope.jsonRouteList = result.data;
+   					if($scope.jsonRouteList.length>0){
+   						$scope.flag="true";
+   	   	   			 $scope.route = angular.fromJson($scope.jsonRouteList);
+   					}else{
+   						$scope.message="Record Not Found";
+   					}
+   			}, function(result) {
+   				$window.alert("fail");
+   				$window.alert(result.data);
+   			});
+           }
+           $scope.clearMessage = function() {
+        	   $scope.message = "";
+        	  }
+        }
+        
+    </script>
+</body>
+</html>

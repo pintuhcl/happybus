@@ -1,0 +1,15 @@
+BEGIN
+	DECLARE EXIT HANDLER FOR SQLEXCEPTION ROLLBACK;
+	DECLARE EXIT HANDLER FOR SQLWARNING ROLLBACK;
+	START TRANSACTION;
+	SET user_id_out=0;
+
+	insert into user (user_name,password,user_role,email,mobile,status,created_date) values (user_name_in,password_in,user_role_in,email_in,mobile_in,status_in,NOW());
+	SET user_id_out= LAST_INSERT_ID();
+	update user set created_by=user_id_out where user_id=user_id_out;
+	IF user_id_out  IS NOT NULL OR   user_id_out !=0 THEN
+		COMMIT;
+	ELSE
+		ROLLBACK;
+	END IF;
+END

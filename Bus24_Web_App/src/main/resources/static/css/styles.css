@@ -1,0 +1,95 @@
+.busRowCard {
+	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
+	border-radius: 5px;
+	/* 	height: 130px; */
+	padding: 20px;
+	font-size: 16px;
+	min-width: 1000px;
+	border: solid #d3d7cf 1px;
+	position: relative;
+}
+
+textarea:focus, input:focus, input[type]:focus, .uneditable-input:focus
+	{
+	border-color: rgba(229, 103, 23, 0.8);
+	box-shadow: 0 1px 1px rgba(229, 103, 23, 0.075) inset, 0 0 8px
+		rgba(229, 103, 23, 0.6);
+	outline: 0 none;
+}
+
+.seatLayoutCard {
+	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
+	border-radius: 5px;
+	background: #FFF;
+	border: solid #d3d7cf 1px;
+	width: 700px;
+	padding: 30px;
+	margin: 20px;
+}
+
+.seatTable {
+	width: 200px;
+	height: 100px;
+	background-color: #FFF;
+	border-radius: 5px;
+	border-collapse: separate;
+	border-spacing: 5px 10px;
+	margin-bottom: 20px;
+	border: solid thin;
+}
+
+table.seatTable td span, table.seatTable span {
+	padding: 2px;
+	text-align: center;
+	width: 50px;
+	height: 50px;
+}
+
+.busRowCard:hover {
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.hb-ddown {
+	position: relative;
+	display: inline-block;
+}
+
+.navbar-default {
+	/* 	background-color:#ef2929; */
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.navbar-default active {
+	color: #00f;
+}
+
+body {
+	padding: 0px;
+	margin: 0px;
+	background-color: #;
+}
+
+.mojFooter {
+	background-color: #f8f8f8;
+	color: #00a651;
+	padding-top: 0px;
+	border-top: 1px solid #e7e7e7;
+	margin-bottom: 0px;
+}
+
+.bottom-footer {
+	border-top: 1px solid #00a651;
+	margin-top: 0px;
+	padding-top: 7px;
+	color: #00a651;
+}
+
+.footer-nav li {
+	display: inline;
+	padding: 0px 40px;
+}
+
+.footer-nav a {
+	color: grey;
+	text-decoration: none;
+}
