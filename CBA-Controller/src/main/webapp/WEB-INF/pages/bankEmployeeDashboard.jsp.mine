@@ -1,0 +1,453 @@
+<%@ include file="header.jsp"%>
+<html ng-app="bank-module1">
+<head>
+<script type="text/javascript" src="js/angular.js"></script>
+
+<link href="css/angular-datepicker.css" rel="stylesheet" type="text/css" />
+<script src="js/angular-datepicker.js"></script>
+<!-- <script type="text/javascript"
+src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
+ -->
+<script type="text/javascript">
+	var app = angular.module("bank-module1", [ '720kb.datepicker' ]);
+	app
+			.controller(
+					"bank-controller",
+					function($scope, $window, $http) {
+						$scope.balanceWindowFlag = false;
+						$scope.accNumDivFlag = false;
+						$scope.accountStatusButtonFlag = false;
+						$scope.messageFlag = false;
+						$scope.accountStatusFlag = false;
+						$scope.depositAmtFlag = false;
+						$scope.depositButtonFlag = false;
+						$scope.chequeDetailsFlag = false;
+						$scope.ddDetailsFlag = false;
+						$scope.depositStatusFlag = false;
+						$scope.showDepositWindow = function() {
+							$scope.fundsTransferWindowFlag = false;
+							$scope.balanceWindowFlag = false;
+							$scope.depositStatusFlag = false;
+							$http({
+								method : "get",
+								url : "/CBA/deposit"
+							}).then(function(result) {
+								$scope.accNumDivFlag = true;
+								$scope.accountStatusButtonFlag = true;
+								$scope.messageFlag = false;
+								$scope.accountStatusFlag = false;
+								$scope.depositAmtFlag = false;
+								$scope.depositButtonFlag = false;
+								$scope.accountNumber = "";
+							}, function(result) {
+								//show error msg
+								$window.alert("failure");
+							});
+						}
+
+						//balance enquiry section
+						$scope.balanceWindowFlag = false;
+						$scope.balanceResultsFlag = false;
+						$scope.messageFlag = false;
+
+						$scope.accHloderNameForBalEnquiry = "";
+						$scope.accStatusForBalEnquiry = "";
+						$scope.accBalanceForBalEnquiry = "";
+						$scope.accNumForBalEnquiry = "";
+						$scope.showBalanceWindow = function() {
+							$scope.fundsTransferWindowFlag = false;
+							$scope.accNumDivFlag = false;
+							$scope.balanceWindowFlag = true;
+							$scope.checkBalance = function() {
+								$http({
+									//ajax call
+									method : "get",
+									url : "/CBA/balanceEnquiry",
+									params : {
+										"accountNumber" : $scope.accNumForBal
+
+									}
+								})
+										.then(
+												function(result) {
+													//success function
+													//result holds status,message,data
+													//console.log(result);
+
+													//$window.alert("account found");
+													$scope.response = result.data;
+													$scope.data = angular
+															.fromJson($scope.response.data);
+													if ($scope.response.status == "SUCCESS") {
+														//$scope.balanceWindowFlag=false;
+														$scope.messageFlag = false;
+														$scope.balanceResultsFlag = true;
+														//console.log($scope.data);
+														$scope.accNumForBalEnquiry = $scope.data.accountNumber;
+														$scope.accHloderNameForBalEnquiry = $scope.data.accountHolderName;
+														$scope.accStatusForBalEnquiry = $scope.data.accountStatus;
+														$scope.accBalanceForBalEnquiry = $scope.data.totalBalance;
+													} else {
+														$scope.messageFlag = true;
+														$scope.message = $scope.response.message;
+													}
+
+												},
+												function(result) {
+													//error message function
+													$window
+															.alert('Failure while getting balance');
+												});
+							}
+	
+						}
+
+						//funds transfer operations
+						$scope.fundsTransferWindowFlag = false;
+						$scope.ftwAccStatusFlag=false;
+						//$scope.response="";
+						$scope.showFundsTransferWindow = function() {
+							$scope.accNumDivFlag = false;
+							$scope.balanceWindowFlag = false;
+							$scope.fromAccNum = "";
+							$scope.toAccNum = "";
+							$scope.fundsTransferWindowFlag = true;
+							$scope.checkAccount = function() {
+								//$window.alert("Entered here");
+
+								$http(
+										{
+											method : "post",
+											url : "/CBA/checkAccountStatus",
+											params : {
+												"accountNumber" : $scope.fromAccNum
+											}
+										}).then(function(result) {
+											//success function
+												
+											if(result.data.status=="SUCCESS"){
+												$scope.ftwAccStatusFlag=true;
+												var response=angular.fromJson(result.data.data);
+												$scope.responseData = response;
+												console.log($scope.responseData);
+											}
+											
+								}, function(result) {
+									//failur function
+									console.log(result);
+								});
+							}
+
+						}
+
+						//check account status
+						$scope.checkAccountStatus = function() {
+							console.log("checkAccountStatus : "
+									+ $scope.accountNumber);
+
+							$http({
+								method : "post",
+								url : "/CBA/checkAccountStatus",
+								params : {
+									"accountNumber" : $scope.accountNumber
+								}
+							})
+									.then(
+											function(result) {
+												console.log("success : "
+														+ result);
+												$scope.response = result.data;
+												console
+														.log($scope.response.status
+																+ " "
+																+ $scope.response.message);
+												if ($scope.response.status == "SUCCESS") {
+													$scope.data = $scope.response.data;
+													$scope.accountStatus = angular
+															.fromJson($scope.data);
+													$scope.accStatus = "Account is "
+															+ $scope.accountStatus.accountStatus;
+													if ($scope.accountStatus.accountStatus == "ACTIVE") {
+														$scope.depositAmtFlag = true;
+														$scope.accountStatusFlag = true;
+														$scope.accountStatusButtonFlag = false;
+														$scope.depositButtonFlag = true;
+														$scope.messageFlag = false;
+														$scope.branchName = $scope.accountStatus.branchName;
+														$scope.accHolderName = $scope.accountStatus.accountHolderName;
+														$scope.accountId = $scope.accountStatus.accountId;
+														$scope.totalBalance = $scope.accountStatus.totalBalance;
+													} else {
+														$scope.accountStatusFlag = true;
+
+													}
+
+												} else {
+													$scope.message = $scope.response.message
+													$scope.messageFlag = true;
+													$scope.accountStatusFlag = false;
+												}
+
+											},
+											function(result) {
+												console.log("failure : "
+														+ result);
+
+											});
+						}
+
+						$scope.chequeDetails = function() {
+							$scope.chequeDetailsFlag = true;
+							$scope.ddDetailsFlag = false;
+						}
+						$scope.ddDetails = function() {
+							$scope.ddDetailsFlag = true;
+							$scope.chequeDetailsFlag = false;
+						}
+						$scope.cashDetails = function() {
+							$scope.chequeDetailsFlag = false;
+							$scope.ddDetailsFlag = false;
+						}
+						$scope.deposit = function() {
+							$scope.number = "";
+							$scope.issuedBy = "";
+							$scope.issuedDate = "";
+							$scope.issuedBranch = "";
+							if ($scope.chequeDetailsFlag == true) {
+								$scope.transactionMode = "cheque";
+								$scope.number = $scope.chequeNumber;
+								$scope.issuedBy = $scope.chequeIssuedBy;
+								$scope.issuedDate = $scope.chequeIssuedDate;
+								$scope.issuedBranch = $scope.chequeIssuedBranch;
+							} else if ($scope.ddDetailsFlag == true) {
+								$scope.transactionMode = "dd";
+								$scope.number = $scope.ddNumber;
+								$scope.issuedBy = $scope.ddIssuedBy;
+								$scope.issuedDate = $scope.ddIssuedDate;
+								$scope.issuedBranch = $scope.ddIssuedBranch;
+							} else {
+								$scope.transactionMode = "cash";
+							}
+
+							$http({
+								method : "post",
+								url : "/CBA/deposit",
+								params : {
+									"accountNumber" : $scope.accountNumber,
+									"accountId" : $scope.accountId,
+									"depositAmount" : $scope.depositAmount,
+									"txDesc" : $scope.txDesc,
+									"transactionMode" : $scope.transactionMode,
+									"number" : $scope.number,
+									"issuedBy" : $scope.issuedBy,
+									"issuedDate" : $scope.issuedDate,
+									"issuedBranch" : $scope.issuedBranch
+								}
+							})
+									.then(
+											function(result) {
+												console
+														.log("Deposit Operation success");
+												$scope.response = result.data;
+												$scope.depositStatus = $scope.response.message;
+												$scope.messageFlag = false;
+												$scope.depositStatusFlag = true;
+												if ($scope.response.status = "SUCCESS") {
+													$scope.transactionId = "Transaction Id : "
+															+ $scope.response.data;
+													$scope.accountStatusFlag = false;
+													$scope.depositAmtFlag = false;
+													$scope.depositButtonFlag = false;
+												} else {
+
+												}
+											},
+											function(result) {
+												console
+														.log("Deposit operation Failure");
+											});
+						}
+					});
+</script>
+</head>
+<body ng-controller="bank-controller">
+	<div>
+		<div align="left">
+			<div style="font: bold; font-size: medium;">
+				<input type="button" value="Deposit" ng-click="showDepositWindow()" />
+
+				<!-- Balance Enquiry -->
+				<br> <input type="button" value="Balance Enquiry"
+					ng-click="showBalanceWindow()" />
+
+				<!-- Funds Trnsfer -->
+				<br> <input type="button" value="Funds Transfer"
+					ng-click="showFundsTransferWindow()">
+
+			</div>
+		</div>
+
+		<!-- Funds Transfer Division -->
+		<div ng-show="fundsTransferWindowFlag" align="center">
+
+			<h3>Entered into Funds Transfer Section</h3>
+			<h1 style="color: red;">&#9888;This module is under construction</h1>
+			<table style="width: 100%; border: 1px solid black;">
+				<thead>
+					<tr>
+						<th style="width: 50%" colspan="2">From</th>
+						<th style="width: 50%" colspan="2">To</th>
+					</tr>
+					<tr>
+						<td>Enter Account Number</td>
+						<td><input type="text" ng-model="fromAccNum"><button
+								ng-click="checkAccount()">Check Account</button></td>
+						<!-- <button>click</button> -->
+						<td>Enter Account Number</td>
+						<td><input type="text" ng-model="toAccNum"></td>
+						<!-- <button>click</button> -->
+					</tr>
+				</thead>
+				<tbody ng-show="ftwAccStatusFlag">
+					<tr>
+						<td colspan="2">
+							<label>Account Holder's Name:</label><br>
+							<label>Account Status:</label><br>
+							<label>Total Balance:</label><br>
+							<label>Account Type:</label><br>
+							<label>Branch Name:</label><br>
+							<label>Branch ID:</label><br>
+						</td>
+						<td colspan = "2"></td>
+					</tr>
+					<tr>
+						<td>Enter Amount</td>
+						<td><input type ="text" ng-model = "transreringFund"></td>
+					</tr>
+				</tbody>
+				<tfoot></tfoot>
+			</table>
+
+		</div>
+
+
+
+
+		<!-- Balance Enquiry Division -->
+		<div ng-show="balanceWindowFlag" align="center">
+			<table id="checkBalance">
+				<tr>
+					<th colspan="4">Balance Enquiry</th>
+				</tr>
+				<tr>
+					<td colspan="2">Enter Account Number</td>
+					<td colspan="2"><input type="text" ng-model="accNumForBal">
+					<button ng-click="checkBalance()">click</button></td>
+				</tr>
+			</table>
+			<table id="balanceResults" ng-show="balanceResultsFlag">
+				<tr>
+					<th>Account Number</th>
+					<th>Account Holder's Name</th>
+					<th>Account Status</th>
+					<th>Account Balance</th>
+				</tr>
+				<tr ng-show="messageFlag">
+					<td>{{message}}</td>
+				</tr>
+				<tr ng-hide="messageFlag">
+					<td>{{accNumForBalEnquiry}}</td>
+					<td>{{accHloderNameForBalEnquiry}}</td>
+					<td>{{accStatusForBalEnquiry}}</td>
+					<td>{{accBalanceForBalEnquiry}}</td>
+				</tr>
+			</table>
+		</div>
+
+
+		<div align="center" id="accountNumberDiv" ng-show="accNumDivFlag"
+			style="margin-top: 4cm">
+			<table border="1">
+
+				<tr>
+					<th colspan="2">Deposit Window</th>
+				</tr>
+				<tr id="message" ng-show="messageFlag">
+					<td colspan="2" align="center" style="color: red;">
+						{{message}}</td>
+				</tr>
+				<tr ng-show="depositStatusFlag">
+					<td colspan="2" align="center">{{depositStatus}}<br />
+						{{transactionId}}
+					</td>
+				</tr>
+
+
+				<tr ng-show="accountStatusFlag">
+					<td colspan="2" align="center">{{accStatus}}</td>
+				</tr>
+				<tr>
+					<td>Enter AccountNumber : <input type="text"
+						ng-model="accountNumber" />
+					</td>
+
+					<td ng-show="accountStatusButtonFlag"><input type="button"
+						value="Click" ng-click="checkAccountStatus()" /></td>
+				</tr>
+
+				<tr ng-show="depositAmtFlag">
+					<td colspan="2" align="center"><label>Account Holder
+							Name : </label> {{accHolderName}}<br /> <label>TotalBalance : </label>
+						{{totalBalance}}<br />
+					<label>Branch Name : </label> {{branchName}}</td>
+				</tr>
+				<tr ng-show="depositAmtFlag">
+					<td align="center"><input type="radio" ng-model="paymentMode"
+						value="CASH" ng-click="cashDetails()" />CASH <input type="radio"
+						ng-model="paymentMode" value="CHEQUE" ng-click="chequeDetails()" />CHEQUE
+
+						<input type="radio" ng-model="paymentMode" value="DD"
+						ng-click="ddDetails()" />DD</td>
+				</tr>
+				<tr ng-show="chequeDetailsFlag">
+					<td>Enter Cheque Number : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input
+						type="text" ng-model="chequeNumber" /> <br /> Enter Cheque Issued
+						By : &nbsp;&nbsp;&nbsp;&nbsp;<input type="text"
+						ng-model="chequeIssuedBy" /> <br /> <datepicker
+							date-format="dd-MM-yyyy"> Enter Cheque Issued Date
+						:&nbsp;&nbsp; <input ng-model="chequeIssuedDate" type="text" /> </datepicker> <br />
+						Enter Bank and Branch Name :<input type="text"
+						ng-model="chequeIssuedBranch" />
+					</td>
+				</tr>
+				<tr ng-show="ddDetailsFlag">
+					<td>Enter DD Number : <input type="text" ng-model="ddNumber" />
+						<br /> Enter DD Issued By : <input type="text"
+						ng-model="ddIssuedBy" /> <br /> <datepicker
+							date-format="dd-MM-yyyy"> Enter DD Issued Date :
+						&nbsp;&nbsp; <input ng-model="ddIssuedDate" type="text" /> </datepicker> <br />
+						Enter Bank and Branch Name : <input type="text"
+						ng-model="ddIssuedBranch" />
+					</td>
+					<td>
+				</tr>
+				<tr ng-show="depositAmtFlag">
+
+					<td>Enter Deposit Amount : <input type="text"
+						ng-model="depositAmount" />
+					</td>
+
+					<td>Enter Transaction Desc : <input type="text"
+						ng-model="txDesc" />
+
+					</td>
+					<td ng-show="depositButtonFlag"><input type="button"
+						value="Click" ng-click="deposit()" /></td>
+				</tr>
+
+			</table>
+
+		</div>
+	</div>
+</body>
+</html>
