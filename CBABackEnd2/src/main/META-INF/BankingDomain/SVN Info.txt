@@ -1,0 +1,107 @@
+  SVN Server :-
+================
+ Version Control Softwares 
+   SVN
+    CVS
+   GITHUB
+Version Control Softwares/Tools are allowing
+multiple no of users(developers/testers etc.)
+to work simul on same project.
+
+This software will maintain Work history,
+files,folders (your project code) in a 
+Repository.
+
+Repository is accesing through URL.
+
+SVN Repository:-
+=================
+IN ORCL System  Visual SVN server is installed.
+In Visual SVN server the
+ SVN Repository Name is CBA 
+
+CBA -->will maintain Project code,work history
+in SVN server our project copy is called
+Master copy.
+
+With SVN we will do
+-->checkout (creating  of working copy 
+in developer system is called as checkout)
+
+**The developer always working on Working copy.
+
+-->commit (saving code from working copy to 
+master copy)
+
+-->update (getting updates from master copy
+to working copy)
+
+
+
+to checkout,commit,update ==>we required
+ SVN client softwares 
+
+Project Checkout Steps:-
+-----------------------
+File-->import-->SVN-->Project From SVN-->NEXT-->
+
+URL: https://orcl/svn/CBA/CBABackEnd
+ 
+UserName:8886160404
+
+Password:8886160404
+
+Next-->
+
+select Checkout the project with the Name
+specified -->NEXT-->FINISH
+
+Note:-
+=====
+First Update The Project,after that only
+commit.
+
+Update:Rightclick on the Project-->TEAM-->Update
+
+Commit:Right Click on Required Files->TEAM->
+              Commit (with a good message)
+ 
+==============================================
+
+Oracle  10g DB Enterprise Edition
+In ORCL System.
+
+In Oracle Default schema name is : System
+
+In Oracle Schema is nothing but User/Logical DB.
+
+In Oracle DB For Our Project ->new Schema created
+
+The Schema Name is CBA.
+
+The DB UserName : CBA
+       Password : CBA
+
+how to create schema in oracle:-
+================================
+create User username identified by password;
+
+grant DBA to UserName;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

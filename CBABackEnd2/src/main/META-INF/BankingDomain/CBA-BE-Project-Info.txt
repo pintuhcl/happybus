@@ -1,0 +1,80 @@
+CommonWealthBank -Backend:-
+===========================
+BranchName: Box Hill Branch
+Address: 28 Main St, Box Hill VIC 3128, Australia
+Opening hours:-
+Monday    9:30am - 4:00pm
+Tuesday    9:30am - 4:00pm
+Wednesday  9:30am - 4:00pm
+Thursday   9:30am - 4:00pm
+Friday     9:30am - 5:00pm
+Saturday   9:30am - 1:00pm
+Sunday     Closed
+
+1)KYC
+2)Types of Accounts:
+3)Types of Cards:
+4)Types of Deposits:
+ 5)Types of Loans:
+6)Types of Operations:
+7)Types of Employees /Users:
+8)Types of Currencies providing by Bank
+ ======================================
+Types of Employees /Users:
+---------------------------
+ Operational Manager
+ Branch Manager
+ Finance Manager
+ Customer Service Representative
+Modules:-
+========
+  ->Branch Module
+     -->Accounts
+     -->KYC
+     -->Customer
+     -->Loan
+
+  ->Operations Module
+====================================
+   Central DB:-
+   ===========
+   Tables:-
+   -------
+   Bank
+   Branch
+   AccountsType
+   DepositsType
+   LoansType
+   CardType
+   Card
+   Employee
+   UserAuthentication
+   Account
+   Customer
+   KYC
+   Loan
+   Currency
+   WorkingHours
+   Nominee
+   Regions
+
+
+
+=======================================
+1)KYC
+2)Types of Accounts:
+    -->check info
+3)Types of Cards:
+4)Types of Deposits:
+    -->deposit offers
+ 5)Types of Loans:
+   -->loans offers
+6)Types of Operations:
+      -->withdraw,deposit,balanceEnq,FundsTransfer,
+      ,stmt generations,interst calculations
+7)Types of Employees /Users:
+      -->login,logout,profile,role etc..
+8)Types of Currencies providing by Bank
+      ->INR
+      ->USD
+      ->AUD

@@ -1,0 +1,22 @@
+   
+
+  Two Schemas
+===============
+  CBA -->Bussiness DATA
+
+ CBA_METADATA-->Batch_jobs Meta data
+
+ ------------------------------------------
+
+two dataSources 
+
+spring.batch.initializer.enabled=true-->empty tables
+creating in Metadata schema 
+-->TX problem
+
+spring.batch.initializer.enabled=false-->tables
+not creating in Metadata schema 
+-->NO TX problem
+->if tables existed data inserting properly
+
+
